@@ -33,7 +33,7 @@ namespace GraphQLProject.Source.Resources.DroidResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context)
+        public static object Resove<T>(ResolveFieldContext<T> context)
         {
             var service = ServiceLocator.Current.GetInstance<DroidService>();
             var userConterxt = context.UserContext as StarWarsUserContext;

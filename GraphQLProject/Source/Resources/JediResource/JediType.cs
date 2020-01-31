@@ -1,5 +1,6 @@
 ﻿using GraphQL.Types;
 using GraphQLProject.Source.Models;
+using GraphQLProject.Source.Resources.DroidResource;
 
 namespace GraphQLProject.Source.Resources.JediResource
 {
@@ -10,6 +11,12 @@ namespace GraphQLProject.Source.Resources.JediResource
             Field(d => d.Id).Name("id").Description("Id to person");
             Field(d => d.Name, nullable: true).Name("name").Description("Name to person");
             Field(d => d.Side, nullable: true).Name("side").Description("Side to person");
+
+            Field<ListGraphType<DroidType>>(
+             "droids", "Get lists droid by param",
+             arguments: DroidQueryInputType.Arguments,
+             resolve: context => DroidQueryInputType.Resove(context)
+           );
         }
     }
 }

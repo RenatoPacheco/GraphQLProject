@@ -34,7 +34,7 @@ namespace GraphQLProject.Source.Resources.JediResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context)
+        public static object Resove<T>(ResolveFieldContext<T> context)
         {
             var service = ServiceLocator.Current.GetInstance<JediService>();
             var userConterxt = context.UserContext as StarWarsUserContext;
