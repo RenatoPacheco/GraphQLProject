@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using CommonServiceLocator;
+using GraphQL.Types;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 
@@ -33,9 +34,10 @@ namespace GraphQLProject.Source.Resources.JediResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context, JediService service)
+        public static object Resove(ResolveFieldContext<object> context)
         {
-            var userConterxt = context.UserContext as GraphQLUserContext;
+            var service = ServiceLocator.Current.GetInstance<JediService>();
+            var userConterxt = context.UserContext as StarWarsUserContext;
             var param = context.GetArgument<QueryJediCmd>("param");
             var keyworks = context.GetArgument<string>("keyworks");
             var jedi = context.GetArgument<int[]>("id");

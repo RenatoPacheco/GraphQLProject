@@ -2,6 +2,7 @@
 using System.Linq;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
+using CommonServiceLocator;
 
 namespace GraphQLProject.Source.Resources.JediResource
 {
@@ -16,9 +17,10 @@ namespace GraphQLProject.Source.Resources.JediResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context, JediService service)
+        public static object Resove(ResolveFieldContext<object> context)
         {
-            var userConterxt = context.UserContext as GraphQLUserContext;
+            var service = ServiceLocator.Current.GetInstance<JediService>();
+            var userConterxt = context.UserContext as StarWarsUserContext;
             var id = context.GetArgument<int>("id");
 
             return service.Query(new QueryJediCmd() { Jedi = new int[] { id }}).FirstOrDefault();

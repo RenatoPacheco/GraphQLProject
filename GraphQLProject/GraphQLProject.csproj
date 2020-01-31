@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="GraphQL, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GraphQL.2.4.0\lib\net45\GraphQL.dll</HintPath>
     </Reference>
@@ -129,6 +132,7 @@
     <Compile Include="App_Start\IdCConfig.cs" />
     <Compile Include="App_Start\IdCCustom\DelegatingHandlerProxy.cs" />
     <Compile Include="App_Start\IdCCustom\InicializeHandler.cs" />
+    <Compile Include="App_Start\IdCCustom\ServiceLocatorAdapter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Common\CommonApiController.cs" />
     <Compile Include="Controllers\GraphQLController.cs" />
@@ -139,11 +143,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Commands\QueryJediCmd.cs" />
     <Compile Include="Source\Commands\QueryDroidCmd.cs" />
-    <Compile Include="Source\GraphQLUserContext.cs" />
+    <Compile Include="Source\StarWarsUserContext.cs" />
     <Compile Include="Source\Models\Droid.cs" />
-    <Compile Include="Source\Resources\DroidResource\DroidQuery.cs" />
+    <Compile Include="Source\StarWarsQuery.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidGetInputType.cs" />
-    <Compile Include="Source\Resources\JediResource\JediQuery.cs" />
     <Compile Include="Source\Repository\JediRepository.cs" />
     <Compile Include="Source\Repository\DroidRepository.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidType.cs" />
@@ -154,6 +157,7 @@
     <Compile Include="Source\Services\JediService.cs" />
     <Compile Include="Source\Services\DroidService.cs" />
     <Compile Include="Source\Models\Jedi.cs" />
+    <Compile Include="Source\StarWarsSchema.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,6 +2,7 @@
 using System.Linq;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
+using CommonServiceLocator;
 
 namespace GraphQLProject.Source.Resources.DroidResource
 {
@@ -16,11 +17,12 @@ namespace GraphQLProject.Source.Resources.DroidResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context, DroidService service)
+        public static object Resove(ResolveFieldContext<object> context)
         {
-            var userConterxt = context.UserContext as GraphQLUserContext;
+            var userConterxt = context.UserContext as StarWarsUserContext;
             var id = context.GetArgument<int>("id");
 
+            var service = ServiceLocator.Current.GetInstance<DroidService>();
             return service.Query(new QueryDroidCmd() { Droid = new int[] { id }}).FirstOrDefault();
         }
     }

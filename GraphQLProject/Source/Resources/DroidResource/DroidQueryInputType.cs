@@ -1,4 +1,5 @@
-﻿using GraphQL.Types;
+﻿using CommonServiceLocator;
+using GraphQL.Types;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 
@@ -32,9 +33,10 @@ namespace GraphQLProject.Source.Resources.DroidResource
             }
         };
 
-        public static object Resove(ResolveFieldContext<object> context, DroidService service)
+        public static object Resove(ResolveFieldContext<object> context)
         {
-            var userConterxt = context.UserContext as GraphQLUserContext;
+            var service = ServiceLocator.Current.GetInstance<DroidService>();
+            var userConterxt = context.UserContext as StarWarsUserContext;
             var param = context.GetArgument<QueryDroidCmd>("param");
             var keyworks = context.GetArgument<string>("keyworks");
             var doid = context.GetArgument<int[]>("id");

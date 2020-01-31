@@ -1,53 +1,32 @@
 ﻿using GraphQL;
-using GraphQL.Types;
-using GraphQLProject.Models;
-using GraphQLProject.Source;
-using GraphQLProject.Source.DroidResource;
-using GraphQLProject.Source.JediResource;
-using GraphQLProject.Source.Services;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Web.Http;
+using GraphQL.Types;
+using GraphQLProject.Models;
+using GraphQLProject.Source;
 
 namespace GraphQLProject.Controllers
 {
     [RoutePrefix("api/graphql")]
     public class GraphQLController : Common.CommonApiController
     {
-        [Route("droid")]
-        public HttpResponseMessage GetDroid(DataGraphQL data)
+        public GraphQLController(StarWarsQuery query)
         {
-            var service = new DroidService();
-
-            Schema Schema = new Schema {
-                Query = new DroidQuery(service)
+            _schema = new Schema {
+                Query = query
             };
-
-            var json = Schema.Execute(_ =>
-            {
-                _.Query = data.Query;
-                _.Inputs = JsonConvert.SerializeObject(data?.Variables ?? new { }).ToInputs();
-                _.UserContext = new GraphQLUserContext();
-            });
-
-            return ResponseJsonString(json);
         }
 
-        [Route("jedi")]
-        public HttpResponseMessage GetJedi(DataGraphQL data)
+        private readonly Schema _schema;
+
+        public HttpResponseMessage Getd(DataGraphQL data)
         {
-            var service = new JediService();
-
-            Schema Schema = new Schema
-            {
-                Query = new JediQuery(service)
-            };
-
-            var json = Schema.Execute(_ =>
+            var json = _schema.Execute(_ =>
             {
                 _.Query = data.Query;
                 _.Inputs = JsonConvert.SerializeObject(data?.Variables ?? new { }).ToInputs();
-                _.UserContext = new GraphQLUserContext();
+                _.UserContext = new StarWarsUserContext();
             });
 
             return ResponseJsonString(json);
