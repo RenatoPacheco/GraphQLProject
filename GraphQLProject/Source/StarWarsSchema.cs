@@ -5,11 +5,11 @@ namespace GraphQLProject.Source
 {
     public class StarWarsSchema : Schema
     {
-        public StarWarsSchema(IDependencyResolver resolver)
-       : base(resolver)
+        public StarWarsSchema(IDependencyResolver provider)
+       : base(provider)
         {
-            /*Query = resolver.Resolve<StarWarsQuery>();
-            Mutation = resolver.Resolve<StarWarsMutation>();*/
+            Query = provider.Resolve<StarWarsQuery>();
+            Mutation = provider.Resolve<StarWarsMutation>();
         }
     }
 }

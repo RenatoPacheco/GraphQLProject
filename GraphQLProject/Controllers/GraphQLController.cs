@@ -11,16 +11,15 @@ namespace GraphQLProject.Controllers
     [RoutePrefix("api/graphql")]
     public class GraphQLController : Common.CommonApiController
     {
-        public GraphQLController(StarWarsQuery query)
+        public GraphQLController(StarWarsSchema schema)
         {
-            _schema = new Schema {
-                Query = query
-            };
+            _schema = schema;
         }
 
         private readonly Schema _schema;
 
-        public HttpResponseMessage Getd(DataGraphQL data)
+        [HttpGet, HttpPost]
+        public HttpResponseMessage Graphql(DataGraphQL data)
         {
             var json = _schema.Execute(_ =>
             {

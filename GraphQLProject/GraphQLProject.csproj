@@ -143,6 +143,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Commands\QueryJediCmd.cs" />
     <Compile Include="Source\Commands\QueryDroidCmd.cs" />
+    <Compile Include="Source\StarWarsMutation.cs" />
+    <Compile Include="Source\StarWarsServiceProvider.cs" />
     <Compile Include="Source\StarWarsUserContext.cs" />
     <Compile Include="Source\Models\Droid.cs" />
     <Compile Include="Source\StarWarsQuery.cs" />
