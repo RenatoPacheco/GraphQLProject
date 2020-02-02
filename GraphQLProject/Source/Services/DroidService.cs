@@ -26,5 +26,28 @@ namespace GraphQLProject.Source.Services
 
             return result;
         }
+
+        public Droid Create(CreateDroidCmd command)
+        {
+            Droid result = new Droid()
+            {
+                Id = 5,
+                Name = command.Name
+            };
+
+            return result;
+        }
+
+        public Droid Update(UpdateDroidCmd command)
+        {
+            Droid result = null;
+
+            result = this.Get(command.Id);
+            if (result != null)
+            {
+                result.Name = command.Name;
+            }
+            return result;
+        }
     }
 }
