@@ -1,6 +1,6 @@
 ﻿namespace GraphQLProject.Source.Commands
 {
-    public class FindediCmd
+    public class FindJediCmd
     {
         public string Keyworks { get; set; }
 

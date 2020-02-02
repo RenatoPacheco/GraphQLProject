@@ -31,7 +31,7 @@ namespace GraphQLProject.Source.Resources.JediResource
               arguments: new QueryArguments() {
                 new QueryArgument<ListInputType> {
                     Name = "param",
-                    DefaultValue = new FindediCmd(),
+                    DefaultValue = new FindJediCmd(),
                     Description = "Command to list jedis"
                 },
                 new QueryArgument<ListGraphType<IntGraphType>> {
@@ -45,7 +45,7 @@ namespace GraphQLProject.Source.Resources.JediResource
               },
               resolve: context => {
                   var userConterxt = context.UserContext as JediUserContext;
-                  var param = context.GetArgument<FindediCmd>("param");
+                  var param = context.GetArgument<FindJediCmd>("param");
                   var keyworks = context.GetArgument<string>("keyworks");
                   var jedi = context.GetArgument<int[]>("id");
 

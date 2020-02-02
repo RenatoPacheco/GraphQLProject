@@ -3,9 +3,9 @@ using GraphQLProject.Source.Commands;
 
 namespace GraphQLProject.Source.Resources.JediResource.InputTypes
 {
-    public class ListInputType : InputObjectGraphType<FindediCmd>
+    public class FindInputType : InputObjectGraphType<FindJediCmd>
     {
-        public ListInputType()
+        public FindInputType()
         {
             Field(d => d.Jedi, nullable: true)
                 .Name("jedi")

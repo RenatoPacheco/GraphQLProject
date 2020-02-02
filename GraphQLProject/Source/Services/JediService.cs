@@ -7,7 +7,7 @@ namespace GraphQLProject.Source.Services
 {
     public class JediService
     {
-        public Jedi[] Find(FindediCmd command)
+        public Jedi[] Find(FindJediCmd command)
         {
             Jedi[] result = new Jedi[] { };
 
@@ -24,6 +24,31 @@ namespace GraphQLProject.Source.Services
 
             result = JediRepository.Results.FirstOrDefault(x => x.Id == id);
 
+            return result;
+        }
+
+        public Jedi Create(CreateJediCmd command)
+        {
+            Jedi result = new Jedi() 
+            {
+                Id = 5,
+                Name = command.Name,
+                Side = command.Side
+            };
+
+            return result;
+        }
+
+        public Jedi Update(UpdateJediCmd command)
+        {
+            Jedi result = null;
+
+            result = this.Get(command.Id);
+            if(result != null)
+            {
+                result.Name = command.Name;
+                result.Side = command.Side;
+            }
             return result;
         }
     }

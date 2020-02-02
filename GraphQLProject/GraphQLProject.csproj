@@ -142,12 +142,18 @@
     </Compile>
     <Compile Include="Models\DataGraphQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Source\Commands\FindediCmd.cs" />
+    <Compile Include="Source\Commands\UpdateJediCmd.cs" />
+    <Compile Include="Source\Commands\UpdateDroidCmd.cs" />
+    <Compile Include="Source\Commands\CreateDroidCmd.cs" />
+    <Compile Include="Source\Commands\CreateJediCmd.cs" />
+    <Compile Include="Source\Commands\FindJediCmd.cs" />
     <Compile Include="Source\Commands\FindDroidCmd.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidMutation.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidQuery.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidSchema.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidUserContext.cs" />
+    <Compile Include="Source\Resources\JediResource\InputTypes\UpdateInputType.cs" />
+    <Compile Include="Source\Resources\JediResource\InputTypes\CreateInputType.cs" />
     <Compile Include="Source\Resources\JediResource\JediMutation.cs" />
     <Compile Include="Source\Resources\JediResource\JediQuery.cs" />
     <Compile Include="Source\Resources\JediResource\JediSchema.cs" />
@@ -159,7 +165,7 @@
     <Compile Include="Source\Resources\DroidResource\ObjectTypes\DroidType.cs" />
     <Compile Include="Source\Resources\DroidResource\InputTypes\ListInputType.cs" />
     <Compile Include="Source\Resources\JediResource\ObjectTypes\JediType.cs" />
-    <Compile Include="Source\Resources\JediResource\InputTypes\ListInputType.cs" />
+    <Compile Include="Source\Resources\JediResource\InputTypes\FindInputType.cs" />
     <Compile Include="Source\Services\JediService.cs" />
     <Compile Include="Source\Services\DroidService.cs" />
     <Compile Include="Source\Models\Jedi.cs" />

@@ -1,5 +1,4 @@
 ﻿using GraphQL;
-using Newtonsoft.Json;
 using System.Net.Http;
 using System.Web.Http;
 using GraphQL.Types;
@@ -25,6 +24,7 @@ namespace GraphQLProject.Controllers
             var json = _schema.Execute(_ =>
             {
                 _.Query = data?.Query;
+                _.OperationName = data?.OperationName;
                 _.Inputs = data?.Variables?.ToInputs();
                 _.UserContext = new DroidUserContext();
             });
