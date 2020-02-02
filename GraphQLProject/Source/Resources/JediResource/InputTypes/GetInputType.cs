@@ -4,9 +4,9 @@ using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 using CommonServiceLocator;
 
-namespace GraphQLProject.Source.Resources.JediResource
+namespace GraphQLProject.Source.Resources.JediResource.InputTypes
 {
-    public class JediGetInputType
+    public class GetInputType
     {
         public static QueryArguments Arguments => new QueryArguments() 
         {
@@ -20,10 +20,10 @@ namespace GraphQLProject.Source.Resources.JediResource
         public static object Resove(ResolveFieldContext<object> context)
         {
             var service = ServiceLocator.Current.GetInstance<JediService>();
-            var userConterxt = context.UserContext as StarWarsUserContext;
+            var userConterxt = context.UserContext as JediUserContext;
             var id = context.GetArgument<int>("id");
 
-            return service.Query(new QueryJediCmd() { Jedi = new int[] { id }}).FirstOrDefault();
+            return service.Get(id);
         }
     }
 }

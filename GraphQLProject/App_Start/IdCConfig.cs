@@ -1,12 +1,13 @@
 ﻿using SimpleInjector;
 using System.Web.Http;
 using CommonServiceLocator;
+using GraphQLProject.Source;
 using SimpleInjector.Lifestyles;
 using SimpleInjector.Integration.WebApi;
 using GraphQLProject.App_Start.IdCCustom;
-using System;
-using GraphQLProject.Source;
-using GraphQL;
+using GraphQLProject.Source.Resources.DroidResource;
+using GraphQLProject.Source.Resources.JediResource;
+using GraphQLProject.Source.Resources;
 
 namespace GraphQLProject
 {
@@ -20,8 +21,10 @@ namespace GraphQLProject
             // This is an extension method from the integration package.
             container.RegisterWebApiControllers(config);
 
-            container.Register<StarWarsSchema>(Lifestyle.Scoped);
-            container.Register<IDependencyResolver, StarWarsServiceProvider>(Lifestyle.Scoped);
+            container.Register<DroidSchema>(Lifestyle.Scoped);
+            container.Register<JediSchema>(Lifestyle.Scoped);
+
+            container.Register<ServiceProvider>(Lifestyle.Scoped);
 
             // Adapter for Service Locator
             var adapter = new ServiceLocatorAdapter(container);

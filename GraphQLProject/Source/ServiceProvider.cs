@@ -4,7 +4,7 @@ using CommonServiceLocator;
 
 namespace GraphQLProject.Source
 {
-    public class StarWarsServiceProvider : IDependencyResolver
+    public class ServiceProvider : IDependencyResolver
     {
         public T Resolve<T>()
         {

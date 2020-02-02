@@ -3,11 +3,11 @@ using GraphQL.Types;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 
-namespace GraphQLProject.Source.Resources.JediResource
+namespace GraphQLProject.Source.Resources.JediResource.InputTypes
 {
-    public class JediQueryInputType : InputObjectGraphType<QueryJediCmd>
+    public class ListInputType : InputObjectGraphType<FindediCmd>
     {
-        public JediQueryInputType()
+        public ListInputType()
         {
             Name = "queryJedi";
             Field(d => d.Jedi, nullable: true).Name("jedi").Description("List ids jedis");
@@ -16,10 +16,10 @@ namespace GraphQLProject.Source.Resources.JediResource
 
         public static QueryArguments Arguments => new QueryArguments() 
         {
-            new QueryArgument<JediQueryInputType>
+            new QueryArgument<ListInputType>
             {
                 Name = "param",
-                DefaultValue = new QueryJediCmd(),
+                DefaultValue = new FindediCmd(),
                 Description = "Command to list jedis"
             },
             new QueryArgument<ListGraphType<IntGraphType>>
@@ -37,15 +37,15 @@ namespace GraphQLProject.Source.Resources.JediResource
         public static object Resove<T>(ResolveFieldContext<T> context)
         {
             var service = ServiceLocator.Current.GetInstance<JediService>();
-            var userConterxt = context.UserContext as StarWarsUserContext;
-            var param = context.GetArgument<QueryJediCmd>("param");
+            var userConterxt = context.UserContext as JediUserContext;
+            var param = context.GetArgument<FindediCmd>("param");
             var keyworks = context.GetArgument<string>("keyworks");
             var jedi = context.GetArgument<int[]>("id");
 
             param.Keyworks = keyworks ?? param.Keyworks;
             param.Jedi = jedi ?? param.Jedi;
 
-            return service.Query(param);
+            return service.Find(param);
         }
     }
 }

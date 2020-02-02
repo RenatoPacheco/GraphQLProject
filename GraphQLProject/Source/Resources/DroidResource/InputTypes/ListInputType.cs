@@ -3,11 +3,11 @@ using GraphQL.Types;
 using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 
-namespace GraphQLProject.Source.Resources.DroidResource
+namespace GraphQLProject.Source.Resources.DroidResource.InputTypes
 {
-    public class DroidQueryInputType : InputObjectGraphType<QueryDroidCmd>
+    public class ListInputType : InputObjectGraphType<FindDroidCmd>
     {
-        public DroidQueryInputType()
+        public ListInputType()
         {
             Name = "queryDroid";
             Field(d => d.Droid, nullable: true).Name("id").Description("List ids droids");
@@ -15,10 +15,10 @@ namespace GraphQLProject.Source.Resources.DroidResource
         }
         public static QueryArguments Arguments => new QueryArguments()
         {
-            new QueryArgument<DroidQueryInputType>
+            new QueryArgument<ListInputType>
             {
                 Name = "param",
-                DefaultValue = new QueryDroidCmd(),
+                DefaultValue = new FindDroidCmd(),
                 Description = "Command to list doids"
             },
             new QueryArgument<ListGraphType<IntGraphType>>
@@ -36,15 +36,15 @@ namespace GraphQLProject.Source.Resources.DroidResource
         public static object Resove<T>(ResolveFieldContext<T> context)
         {
             var service = ServiceLocator.Current.GetInstance<DroidService>();
-            var userConterxt = context.UserContext as StarWarsUserContext;
-            var param = context.GetArgument<QueryDroidCmd>("param");
+            var userConterxt = context.UserContext as DroidUserContext;
+            var param = context.GetArgument<FindDroidCmd>("param");
             var keyworks = context.GetArgument<string>("keyworks");
             var doid = context.GetArgument<int[]>("id");
 
             param.Keyworks = keyworks ?? param.Keyworks;
             param.Droid = doid ?? param.Droid;
 
-            return service.Query(param);
+            return service.Find(param);
         }
     }
 }

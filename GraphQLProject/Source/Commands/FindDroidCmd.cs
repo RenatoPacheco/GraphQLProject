@@ -2,7 +2,7 @@
 
 namespace GraphQLProject.Source.Commands
 {
-    public class QueryDroidCmd
+    public class FindDroidCmd
     {
         public string Keyworks { get; set; }
 

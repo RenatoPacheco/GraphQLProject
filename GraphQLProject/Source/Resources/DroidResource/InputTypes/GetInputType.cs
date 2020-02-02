@@ -1,12 +1,10 @@
 ﻿using GraphQL.Types;
-using System.Linq;
-using GraphQLProject.Source.Commands;
 using GraphQLProject.Source.Services;
 using CommonServiceLocator;
 
-namespace GraphQLProject.Source.Resources.DroidResource
+namespace GraphQLProject.Source.Resources.DroidResource.InputTypes
 {
-    public class DroidGetInputType
+    public class GetInputType
     {
         public static QueryArguments Arguments => new QueryArguments() 
         {
@@ -19,11 +17,11 @@ namespace GraphQLProject.Source.Resources.DroidResource
 
         public static object Resove(ResolveFieldContext<object> context)
         {
-            var userConterxt = context.UserContext as StarWarsUserContext;
+            var userConterxt = context.UserContext as DroidUserContext;
             var id = context.GetArgument<int>("id");
 
             var service = ServiceLocator.Current.GetInstance<DroidService>();
-            return service.Query(new QueryDroidCmd() { Droid = new int[] { id }}).FirstOrDefault();
+            return service.Get(id);
         }
     }
 }
