@@ -1,4 +1,6 @@
 ﻿using GraphQL.Types;
+using GraphQLProject.Source.Commands;
+using GraphQLProject.Source.Services;
 using GraphQLProject.Source.Resources.DroidResource.InputTypes;
 using GraphQLProject.Source.Resources.DroidResource.ObjectTypes;
 
@@ -6,19 +8,53 @@ namespace GraphQLProject.Source.Resources.DroidResource
 {
     public class DroidQuery : ObjectGraphType
     {
-        public DroidQuery()
+        public DroidQuery(DroidService service)
         {
 
             Field<DroidType>(
                 "droid", "Get one droid by id",
-                arguments: GetInputType.Arguments,
-                resolve: context => GetInputType.Resove(context)
-                );
+                arguments: new QueryArguments() {
+                    new QueryArgument<IntGraphType> {
+                        Name = "id",
+                        Description = "Command to list droids"
+                    }
+                },
+                resolve: context => {
+                    var userConterxt = context.UserContext as DroidUserContext;
+                    var id = context.GetArgument<int>("id");
+
+                    return service.Get(id);
+                }
+            );
 
             Field<ListGraphType<DroidType>>(
                 "droids", "Get lists droid by param",
-                arguments: ListInputType.Arguments,
-                resolve: context => ListInputType.Resove(context)
+                arguments: new QueryArguments() {
+                    new QueryArgument<ListInputType> {
+                        Name = "param",
+                        DefaultValue = new FindDroidCmd(),
+                        Description = "Command to list doids"
+                    },
+                    new QueryArgument<ListGraphType<IntGraphType>> {
+                        Name = "id",
+                        Description = "Command to list doids"
+                    },
+                    new QueryArgument<StringGraphType> {
+                        Name = "keyworks",
+                        Description = "Command to list doids"
+                    }
+                },
+                resolve: context => {
+                    var userConterxt = context.UserContext as DroidUserContext;
+                    var param = context.GetArgument<FindDroidCmd>("param");
+                    var keyworks = context.GetArgument<string>("keyworks");
+                    var doid = context.GetArgument<int[]>("id");
+
+                    param.Keyworks = keyworks ?? param.Keyworks;
+                    param.Droid = doid ?? param.Droid;
+
+                    return service.Find(param);
+                }
             );
         }
     }

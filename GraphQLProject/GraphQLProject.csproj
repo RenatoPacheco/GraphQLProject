@@ -154,12 +154,10 @@
     <Compile Include="Source\Resources\JediResource\JediUserContext.cs" />
     <Compile Include="Source\ServiceProvider.cs" />
     <Compile Include="Source\Models\Droid.cs" />
-    <Compile Include="Source\Resources\DroidResource\InputTypes\GetInputType.cs" />
     <Compile Include="Source\Repository\JediRepository.cs" />
     <Compile Include="Source\Repository\DroidRepository.cs" />
     <Compile Include="Source\Resources\DroidResource\ObjectTypes\DroidType.cs" />
     <Compile Include="Source\Resources\DroidResource\InputTypes\ListInputType.cs" />
-    <Compile Include="Source\Resources\JediResource\InputTypes\GetInputType.cs" />
     <Compile Include="Source\Resources\JediResource\ObjectTypes\JediType.cs" />
     <Compile Include="Source\Resources\JediResource\InputTypes\ListInputType.cs" />
     <Compile Include="Source\Services\JediService.cs" />
