@@ -24,8 +24,8 @@ namespace GraphQLProject.Controllers
         {
             var json = _schema.Execute(_ =>
             {
-                _.Query = data.Query;
-                _.Inputs = JsonConvert.SerializeObject(data?.Variables ?? new { }).ToInputs();
+                _.Query = data?.Query;
+                _.Inputs = data?.Variables?.ToInputs();
                 _.UserContext = new DroidUserContext();
             });
 
