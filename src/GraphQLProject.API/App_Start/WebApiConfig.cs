@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace GraphQLProject.API
 {
@@ -19,6 +16,9 @@ namespace GraphQLProject.API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // Show exceptions
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
         }
     }
 }
