@@ -1,34 +1,37 @@
 ﻿using GraphQL;
-using System.Net.Http;
-using System.Web.Http;
+using GraphQL.Instrumentation;
 using GraphQL.Types;
 using GraphQLProject.Models;
 using GraphQLProject.Source.Resources.DroidResource;
-using System.Threading.Tasks;
-using System.Net;
-using System.Linq;
-using GraphQL.Instrumentation;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace GraphQLProject.Controllers
+namespace GraphQLProject.Source
 {
-    [RoutePrefix("api/droid/graphql")]
-    public class DrodController : Common.CommonApiController
+    public class DroidGraphQL : IExecutionGraphQL
     {
-        public DrodController(DroidSchema schema)
+        public DroidGraphQL(DroidSchema schema)
         {
             _schema = schema;
         }
 
-        private readonly Schema _schema;
+        private Schema _schema;
+        private bool _anyError = false;
+        private ExecutionResult _result;
 
-        [HttpGet, HttpPost, Route]
-        public async Task<HttpResponseMessage> Graphql(DataGraphQL data)
+        public bool AnyError()
+        {
+            return _anyError;
+        }
+
+        public async Task ExecuteAsync(DataGraphQL data)
         {
             var start = DateTime.UtcNow;
             var metrics = data?.EnableMetrics ?? false;
 
-            var result = await new DocumentExecuter().ExecuteAsync(_ => {
+            _anyError = false;
+            _result = await new DocumentExecuter().ExecuteAsync(_ => {
                 _.Schema = _schema;
                 _.Query = data?.Query;
                 _.OperationName = data?.OperationName;
@@ -43,13 +46,15 @@ namespace GraphQLProject.Controllers
 
             if (metrics)
             {
-                result.EnrichWithApolloTracing(start);
+                _result.EnrichWithApolloTracing(start);
             }
 
-            var status = result.Errors?.Any() ?? false 
-                ? HttpStatusCode.BadRequest : HttpStatusCode.OK;
+            _anyError = _result.Errors?.Any() ?? false;
+        }
 
-            return Request.CreateResponse(status, result);
+        public ExecutionResult Result()
+        {
+            return _result;
         }
     }
 }
