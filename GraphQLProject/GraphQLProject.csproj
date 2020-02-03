@@ -152,6 +152,8 @@
     <Compile Include="Source\Resources\DroidResource\DroidQuery.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidSchema.cs" />
     <Compile Include="Source\Resources\DroidResource\DroidUserContext.cs" />
+    <Compile Include="Source\Resources\DroidResource\InputTypes\CreateInputType.cs" />
+    <Compile Include="Source\Resources\DroidResource\InputTypes\UpdateInputType.cs" />
     <Compile Include="Source\Resources\JediResource\InputTypes\UpdateInputType.cs" />
     <Compile Include="Source\Resources\JediResource\InputTypes\CreateInputType.cs" />
     <Compile Include="Source\Resources\JediResource\JediMutation.cs" />
