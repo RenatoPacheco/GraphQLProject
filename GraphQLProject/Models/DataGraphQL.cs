@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Json;
+﻿using GraphQLProject.Source;
+using Newtonsoft.Json.Linq;
 
 namespace GraphQLProject.Models
 {
-    public class DataGraphQL
+    public class DataGraphQL : IDataGraphQL
     {
         public string OperationName { get; set; }
         public string NamedQuery { get; set; }

@@ -25,7 +25,7 @@ namespace GraphQLProject.Source
             return _anyError;
         }
 
-        public async Task ExecuteAsync(DataGraphQL data)
+        public async Task ExecuteAsync(IDataGraphQL data)
         {
             var start = DateTime.UtcNow;
             var metrics = data?.EnableMetrics ?? false;

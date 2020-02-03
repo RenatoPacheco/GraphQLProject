@@ -148,6 +148,7 @@
     <Compile Include="Source\Commands\CreateJediCmd.cs" />
     <Compile Include="Source\Commands\FindJediCmd.cs" />
     <Compile Include="Source\Commands\FindDroidCmd.cs" />
+    <Compile Include="Source\IDataGraphQL.cs" />
     <Compile Include="Source\JediGraphQL.cs" />
     <Compile Include="Source\DroidGraphQL.cs" />
     <Compile Include="Source\IExecutionGraphQL.cs" />

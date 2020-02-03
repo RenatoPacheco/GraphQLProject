@@ -1,12 +1,11 @@
 ﻿using GraphQL;
-using GraphQLProject.Models;
 using System.Threading.Tasks;
 
 namespace GraphQLProject.Source
 {
     interface IExecutionGraphQL
     {
-        Task ExecuteAsync(DataGraphQL data);
+        Task ExecuteAsync(IDataGraphQL data);
 
         bool AnyError();
 
