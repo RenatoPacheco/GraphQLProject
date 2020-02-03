@@ -11,11 +11,11 @@ namespace GraphQLProject.Source.Resources.DroidResource
         public DroidMutation(DroidService service)
         {
             Field<DroidType>(
-                "createDroid", "Get one droid by id",
+                "createDroid", "Creating new droid",
                 arguments: new QueryArguments() {
                     new QueryArgument<CreateInputType> {
                         Name = "command",
-                        Description = "Command to list jedis",
+                        Description = "Command to create droids",
                         DefaultValue = new CreateDroidCmd(),
                     }
                 },
@@ -28,11 +28,11 @@ namespace GraphQLProject.Source.Resources.DroidResource
             );
 
             Field<DroidType>(
-                "updateDroid", "Get one droid by id",
+                "updateDroid", "Update droid by id",
                 arguments: new QueryArguments() {
-                    new QueryArgument<CreateInputType> {
+                    new QueryArgument<UpdateInputType> {
                         Name = "command",
-                        Description = "Command to list jedis",
+                        Description = "Command to update droids",
                         DefaultValue = new UpdateDroidCmd(),
                     }
                 },

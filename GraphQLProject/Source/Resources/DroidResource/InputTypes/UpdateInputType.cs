@@ -7,6 +7,8 @@ namespace GraphQLProject.Source.Resources.DroidResource.InputTypes
     {
         public UpdateInputType()
         {
+            Name = "UpdateInput";
+
             Field(d => d.Id, nullable: false)
                 .Name("id")
                 .Description("Set id person");

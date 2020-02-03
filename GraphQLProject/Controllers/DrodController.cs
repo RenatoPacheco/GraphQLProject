@@ -4,6 +4,9 @@ using System.Web.Http;
 using GraphQL.Types;
 using GraphQLProject.Models;
 using GraphQLProject.Source.Resources.DroidResource;
+using System.Threading.Tasks;
+using System.Net;
+using System.Linq;
 
 namespace GraphQLProject.Controllers
 {
@@ -18,17 +21,20 @@ namespace GraphQLProject.Controllers
         private readonly Schema _schema;
 
         [HttpGet, HttpPost, Route]
-        public HttpResponseMessage Graphql(DataGraphQL data)
+        public async Task<HttpResponseMessage> Graphql(DataGraphQL data)
         {
-            var json = _schema.Execute(_ =>
-            {
+            var result = await new DocumentExecuter().ExecuteAsync(_ => {
+                _.Schema = _schema;
                 _.Query = data?.Query;
                 _.OperationName = data?.OperationName;
                 _.Inputs = data?.Variables?.ToInputs();
                 _.UserContext = new DroidUserContext();
             });
 
-            return ResponseJsonString(json);
+            var status = result.Errors?.Any() ?? false 
+                ? HttpStatusCode.BadRequest : HttpStatusCode.OK;
+
+            return Request.CreateResponse(status, result);
         }
     }
 }
