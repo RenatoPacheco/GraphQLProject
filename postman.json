@@ -6,276 +6,236 @@
 	},
 	"item": [
 		{
-			"name": "Get droid",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n    d1: droid(id: 2) {\n        id,\n        name\n    },\n    d2: droid(id: 1) {\n        id,\n        name\n    }\n}",
-						"variables": ""
-					}
+			"name": "Jedi",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($command: CreateInput!) {\n    jedi: createJedi(command : $command) {\n        id,\n        name,\n        side\n    }\n}",
+								"variables": "{\n\tcommand: {\n\t\tname: \"Name here..\",\n\t\tside: \"Side here...\"\n\t}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jedi/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jedi",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($command: UpdateInput!) {\n    droid: updateJedi(command : $command) {\n        id,\n        name,\n        side\n    }\n}",
+								"variables": "{\n\tcommand: {\n\t\tid: 3,\n\t\tname: \"Name here..\",\n\t\tside: \"Side here..\"\n\t}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jedi/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jedi",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    jedi(id: 2) {\n        id,\n        name,\n        side\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jedi/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jedi",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    jedis(id: [1,2]) {\n        id,\n        name,\n        side\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jedi/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jedi",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Get droid by variables",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query($id: Int) {\n    droid(id: $id) {\n        id,\n        name\n    }\n}",
-						"variables": "{\n\tid: 2\n}"
-					}
+			"name": "Droid",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($command: CreateInput!) {\n    droid: createDroid(command : $command) {\n        id,\n        name\n    }\n}",
+								"variables": "{\n\tcommand: {\n\t\tname: \"Name here..\"\n\t}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/droid/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"droid",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query droid",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n    droids(id: [1,2], keyworks: \"R2-D2\") {\n        id,\n        name\n    }\n}",
-						"variables": ""
-					}
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation($command: UpdateInput!) {\n    droid: updateDroid(command : $command) {\n        id,\n        name\n    }\n}",
+								"variables": "{\n\tcommand: {\n\t\tid: 3,\n\t\tname: \"Name here..\"\n\t}\n}"
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/droid/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"droid",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query droid by variables",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query($id: [Int], $keyworks: String) {\n    droids(id: $id, keyworks: $keyworks) {\n        id,\n        name\n    }\n}",
-						"variables": "{\n\tid: \n\t[\n\t\t1,\n\t\t2\n\t], \n\tkeyworks: \"R2-D2\"\n}"
-					}
+				{
+					"name": "Get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    d1: droid(id: 2) {\n        id,\n        name\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/droid/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"droid",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n    droids(id: [1,2]) {\n        id,\n        name\n    }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/droid/graphql",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"droid",
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query droid by variables Copy",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query($param: queryDroid) {\n    droids(param: $param) {\n        id,\n        name\n    }\n}",
-						"variables": "{\n\tparam: {\n\t\t\n\tid: \n\t[\n\t\t1,\n\t\t2\n\t], \n\tkeyworks: \"R2-D2\"\n\t}\n}"
-					}
-				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get jedi",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n    jedi(id: 2) {\n        id,\n        name,\n        side,\n        droids(id: 1) {\n            id,\n            name\n        }\n    }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql/jedi",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql",
-						"jedi"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get jedi by variables",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query($id: Int) {\n    jedi(id: $id) {\n        id,\n        name,\n        side\n    }\n}",
-						"variables": "{\n\tid: 2\n}"
-					}
-				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query jedi",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query {\n    jedis(id: [1,2]) {\n        id,\n        name,\n        side\n    }\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql/jedi",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql",
-						"jedi"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Query jedi by variables",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "query($id: [Int], $keyworks: String) {\n    jedis(id: $id, keyworks: $keyworks) {\n        id,\n        name,\n        side\n    }\n}",
-						"variables": "{\n\tid: \n\t[\n\t\t1,\n\t\t2\n\t], \n\tkeyworks: \"Person 001\"\n}"
-					}
-				},
-				"url": {
-					"raw": "http://localhost:54343/api/graphql",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "54343",
-					"path": [
-						"api",
-						"graphql"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
