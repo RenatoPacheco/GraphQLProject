@@ -1,11 +1,10 @@
 ﻿using GraphQL;
-using GraphQL.Instrumentation;
-using GraphQL.Types;
-using GraphQLProject.API.Models;
-using GraphQLProject.API.Source.Resources.JediResource;
 using System;
 using System.Linq;
+using GraphQL.Types;
 using System.Threading.Tasks;
+using GraphQL.Instrumentation;
+using GraphQLProject.API.Source.Resources.JediResource;
 
 namespace GraphQLProject.API.Source
 {
@@ -42,7 +41,7 @@ namespace GraphQLProject.API.Source
                     _.EnableMetrics = true;
                     _.FieldMiddleware.Use<InstrumentFieldsMiddleware>();
                 }
-            });
+            }).ConfigureAwait(false);
 
             if (metrics)
             {
